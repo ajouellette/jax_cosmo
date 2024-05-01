@@ -8,7 +8,7 @@ from jax.tree_util import register_pytree_node_class
 from jax_cosmo.jax_utils import container
 from jax_cosmo.scipy.integrate import simps
 
-steradian_to_arcmin2 = 11818102.86004228
+steradian_to_arcmin2 = (180/np.pi * 60)**2
 
 __all__ = ["smail_nz", "kde_nz", "delta_nz"]
 
