@@ -79,6 +79,23 @@ class smail_nz(redshift_distribution):
 
 
 @register_pytree_node_class
+class gaussian_nz(redshift_distribution):
+    """Defines a Gaussian redshift distribution
+    Parameters:
+    -----------
+    z0: mean of Gaussian
+
+    sigma: standard deviation of Gaussian
+
+    gals_per_arcmin2: number of galaxies per sq arcmin
+    """
+
+    def pz_fn(self, z):
+        z0, sigma = self.params
+        return np.exp(-0.5 * ((z - z0) / sigma)**2)
+
+
+@register_pytree_node_class
 class delta_nz(redshift_distribution):
     """Defines a single plane redshift distribution with these arguments
     Parameters:
