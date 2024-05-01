@@ -61,7 +61,7 @@ class redshift_distribution(container):
 
 @register_pytree_node_class
 class smail_nz(redshift_distribution):
-    """Defines a smail distribution with these arguments
+    """Defines a Smail distribution with these arguments
     Parameters:
     -----------
     a:
@@ -100,7 +100,7 @@ class delta_nz(redshift_distribution):
     """Defines a single plane redshift distribution with these arguments
     Parameters:
     -----------
-    z0:
+    z0: redshift of plane
     """
 
     def __init__(self, *args, **kwargs):
