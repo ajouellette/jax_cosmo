@@ -10,7 +10,7 @@ from jax_cosmo.scipy.integrate import simps
 
 steradian_to_arcmin2 = (180/np.pi * 60)**2
 
-__all__ = ["smail_nz", "kde_nz", "delta_nz"]
+__all__ = ["smail_nz", "gaussian_nz", "kde_nz", "delta_nz"]
 
 
 class redshift_distribution(container):
