@@ -12,7 +12,7 @@ from jax_cosmo.scipy.integrate import simps
 from jax_cosmo.utils import a2z
 from jax_cosmo.utils import z2a
 
-radian_to_arcmin = 3437.7467707849396
+radian_to_arcmin = 180/np.pi * 60
 
 __all__ = ["WeakLensing", "NumberCounts"]
 
