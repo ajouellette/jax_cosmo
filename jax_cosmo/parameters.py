@@ -18,3 +18,16 @@ Planck15 = partial(
     w0=-1.0,
     wa=0.0,
 )
+
+# Planck 2018 paper VI, final column of table 2
+Planck18 = partial(
+    Cosmology,
+    Omega_c=0.2607,
+    Omega_b=0.04897,
+    Omega_k=0.0,
+    h=0.6766,
+    n_s=0.9665,
+    sigma8=0.825,
+    w0=-1.0,
+    wa=0.0,
+)
