@@ -4,7 +4,6 @@ from jax import lax
 from jax.experimental.ode import odeint
 
 import jax_cosmo.constants as const
-from jax_cosmo.scipy.interpolate import interp
 
 __all__ = [
     "w",
@@ -241,7 +240,7 @@ def radial_comoving_distance(cosmo, a, log10_amin=-3, steps=256):
 
     a = np.atleast_1d(a)
     # Return the results as an interpolation of the table
-    return np.clip(interp(a, cache["a"], cache["chi"]), 0.0)
+    return np.clip(np.interp(a, cache["a"], cache["chi"]), 0.0)
 
 
 def a_of_chi(cosmo, chi):
@@ -266,7 +265,7 @@ def a_of_chi(cosmo, chi):
         radial_comoving_distance(cosmo, 1.0)
     cache = cosmo._workspace["background.radial_comoving_distance"]
     chi = np.atleast_1d(chi)
-    return interp(chi, cache["chi"], cache["a"])
+    return np.interp(chi, cache["chi"], cache["a"])
 
 
 def dchioverda(cosmo, a):
@@ -487,7 +486,7 @@ def _growth_factor_ODE(cosmo, a, log10_amin=-3, steps=128, eps=1e-4):
         cosmo._workspace["background.growth_factor"] = cache
     else:
         cache = cosmo._workspace["background.growth_factor"]
-    return np.clip(interp(a, cache["a"], cache["g"]), 0.0, 1.0)
+    return np.clip(np.interp(a, cache["a"], cache["g"]), 0.0, 1.0)
 
 
 def _growth_rate_ODE(cosmo, a):
@@ -511,7 +510,7 @@ def _growth_rate_ODE(cosmo, a):
     if not "background.growth_factor" in cosmo._workspace.keys():
         _growth_factor_ODE(cosmo, np.atleast_1d(1.0))
     cache = cosmo._workspace["background.growth_factor"]
-    return interp(a, cache["a"], cache["f"])
+    return np.interp(a, cache["a"], cache["f"])
 
 
 def _growth_factor_gamma(cosmo, a, log10_amin=-3, steps=128):
@@ -547,7 +546,7 @@ def _growth_factor_gamma(cosmo, a, log10_amin=-3, steps=128):
         cosmo._workspace["background.growth_factor"] = cache
     else:
         cache = cosmo._workspace["background.growth_factor"]
-    return np.clip(interp(a, cache["a"], cache["g"]), 0.0, 1.0)
+    return np.clip(np.interp(a, cache["a"], cache["g"]), 0.0, 1.0)
 
 
 def _growth_rate_gamma(cosmo, a):
